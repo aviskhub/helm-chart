@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: {{.Values.deployment.app1.name}}
+  labels:
+    {{- range $key,$value := .Values.deployment.app1.labels}}
+    {{$key}}: {{$value | quote}}
+    {{- end}}
+spec:
+  selector:
+    matchLabels:
+      app: {{.Values.deployment.app1.labels.app}}
+  {{- if .Values.deployment.app1.replica}}    
+  replicas: {{.Values.deployment.app1.replica}}
+  {{- end}}
+  template:
+    metadata:
+      name: my-pod-app1
+      labels:
+        app: {{.Values.deployment.app1.labels.app}}
+    spec:
+      containers:
+        - name: my-container
+          image: {{.Values.deployment.app1.image}}
+          ports:
+            - containerPort: {{.Values.deployment.app1.containerport | quote}}
+            
