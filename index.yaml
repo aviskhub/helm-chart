@@ -3,17 +3,17 @@ entries:
   firstchart:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-03T14:04:41.4170528+05:30"
+    created: "2024-01-03T14:28:21.7283104+05:30"
     dependencies:
     - condition: aws-load-balancer-controller.enabled
       name: aws-load-balancer-controller
       repository: https://aws.github.io/eks-charts
       version: 1.6.2
     description: A Helm chart created by Abhishek singh
-    digest: c2a2c2bab380a8ab2f73e42b0d815cc3f641d476dca659d8969dd2df7a7038b9
+    digest: 0146aa0dcae709d7e592f2f8d3a52094edc0184ac14aa0b664b2d7a9b38a1503
     name: firstchart
     type: application
     urls:
-    - firstchart/firstchart-0.1.0.tgz
+    - firstchart-0.1.0.tgz
     version: 0.1.0
-generated: "2024-01-03T14:04:41.4144555+05:30"
+generated: "2024-01-03T14:28:21.7257346+05:30"
