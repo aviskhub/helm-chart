@@ -1,29 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-app1
+  name: my-first-deployment
   labels:
-     env: dev
-     app: app1
-  namespace: default
+    name: dev 
 spec:
+  replica: 2
   selector:
-    matchlabels:
-      env: dev
-      app: app1      
-  replicas: 2
-  template: 
+    matchLabels:
+      slectr: select-this-pod
+      app: my-app
+      task: dev
+  template:
     metadata:
-      name: pods-name
-      labels: 
-        env: dev
-        app: app1
+      name: my-first-pod
+      labels:
+        name: dev
+        app: my-app
+        slectr: select-this-pod
     spec:
       containers:
-         name: my-app1
-         image: abhishekimage/mynginx:v1-release
-         ports:
-           - containerPort: 80 
-
----
-
+        - name: my-container-1
+          image: abhishekimage/mynginx:v1-release
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              cpu: "300m"
+              memory: "400mi"
+            request:
+              cpu: "200m"
+              memory: "300mi"                 
