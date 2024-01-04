@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{.Values.deployments.app1.name}}
+  labels:
+    {{- with .Values.deployments.app1.labels}}
+    {{- toYaml . | nindent 4}}
+    {{- end}}
+  namespace: {{.Values.deployments.app1.namespace}} 
+spec:
+  selector:
+    matchlabels:
+    {{- with .Values.deployments.app1.labels}}
+    {{- toYaml . | nindent 6}}
+    {{- end }}      
+  replicas: {{.Values.deployments.app1.replicas}}
+  template: 
+    metadata:
+      name: {{.Release.Name}}
+      labels: 
+      {{- with .Values.deployments.app1.labels}}
+      {{- toYaml . | nindent 8}}
+      {{- end}}
+    spec:
+      containers:
+        {{-  with .Values.deployments.app1.containers}}
+        {{- toYaml . | nindent 8}}
+        {{- end}}
+
+---
+
