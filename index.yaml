@@ -1,9 +1,20 @@
 apiVersion: v1
 entries:
+  aws-alb-ingress:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-01-04T15:14:55.6093469+05:30"
+    description: A Helm chart for Kubernetes
+    digest: 0561901c4003da3becf60ecb8347528c4dd8cdffca0f24045afbf0e9655326c0
+    name: aws-alb-ingress
+    type: application
+    urls:
+    - aws-alb-ingress-0.1.0.tgz
+    version: 0.1.0
   firstchart:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-01-03T14:28:21.7283104+05:30"
+    created: "2024-01-04T15:14:55.6175356+05:30"
     dependencies:
     - condition: aws-load-balancer-controller.enabled
       name: aws-load-balancer-controller
@@ -16,4 +27,4 @@ entries:
     urls:
     - firstchart-0.1.0.tgz
     version: 0.1.0
-generated: "2024-01-03T14:28:21.7257346+05:30"
+generated: "2024-01-04T15:14:55.604297+05:30"
