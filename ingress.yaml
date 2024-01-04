@@ -1,10 +1,14 @@
-apiVersion: extensions/v1
-kind : Ingress 
+apiVersion: extensions/v1beta1
+kind: Ingress
 metadata:
-  name: my-ingress
-  namespace: default
-  annotation:
+  name: ingress-usermgmt-restapp-service
+  labels:
+    app: usermgmt-restapp
+  annotations:
+    # Ingress Core Settings
+    kubernetes.io/ingress.class: "alb"
     alb.ingress.kubernetes.io/scheme: internet-facing
+    # Health Check Settings
     alb.ingress.kubernetes.io/healthcheck-protocol: HTTP 
     alb.ingress.kubernetes.io/healthcheck-port: traffic-port
     alb.ingress.kubernetes.io/healthcheck-path: /
@@ -14,15 +18,12 @@ metadata:
     alb.ingress.kubernetes.io/healthy-threshold-count: '2'
     alb.ingress.kubernetes.io/unhealthy-threshold-count: '2'
 spec:
- ingressClassName: my-ingress-class
- rules:
-   - http:
-       paths:
-         - path: "/"
-           backend:
-             service:
-               name: app1
-               port:
-                 number: 80
-     
-       
+  ingressClassName: my-ingress-class
+  rules:
+    - http:
+        paths:
+          - path: /*
+            backend:
+              serviceName: app1
+              servicePort: 80
+      
