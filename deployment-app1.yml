@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app1
+  labels:
+     env: dev
+     app: app1
+  namespace: default
+spec:
+  selector:
+    matchlabels:
+      env: dev
+      app: app1      
+  replicas: 2
+  template: 
+    metadata:
+      name: pods-name
+      labels: 
+        env: dev
+        app: app1
+    spec:
+      containers:
+         name: my-app1
+         image: abhishekimage/mynginx:v1-release
+         ports:
+           - containerPort: 80 
+
+---
+
